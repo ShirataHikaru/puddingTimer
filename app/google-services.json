@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "3986529860",
+    "firebase_url": "https://puddingtimer.firebaseio.com",
+    "project_id": "puddingtimer",
+    "storage_bucket": "puddingtimer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3986529860:android:2c92b0729285de67",
+        "android_client_info": {
+          "package_name": "com.shiratahikaru.puddingtimer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "3986529860-vjr6oamc1enngjagfhk1vme0jdnojj9u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
