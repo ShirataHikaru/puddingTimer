@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+import android.content.SharedPreferences;
 
 import com.google.firebase.crash.FirebaseCrash;
 
@@ -64,6 +65,11 @@ public class SettingActivity extends AppCompatActivity {
 
                 if(checkedNum == 3){
                     intent.putExtra("TIME", setTime(data));
+                    SharedPreferences pref = getSharedPreferences("DataSave", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putLong("TIME",setTime(data));
+                    editor.apply();
+
                     startActivity(intent);
                 }
             }

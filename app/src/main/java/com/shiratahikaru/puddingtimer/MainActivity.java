@@ -2,6 +2,7 @@ package com.shiratahikaru.puddingtimer;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.SharedPreferences;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent i = getIntent();
-        time = i.getLongExtra("TIME",5000);
+        SharedPreferences pref = getSharedPreferences("DataSave",MODE_PRIVATE);
+        time = pref.getLong("TIME",0 );
 
         final TextView timerView = (TextView)findViewById(R.id.textView);
         timerView.setText(time2string(time));
@@ -54,14 +55,14 @@ public class MainActivity extends AppCompatActivity {
                 //呼び出す日時を設定する
                 Calendar triggerTime = Calendar.getInstance();
                 //設定した日時で発行するIntentを生成
-                triggerTime.add(Calendar.SECOND, 5);    //セットタイマー秒
+                triggerTime.add(Calendar.SECOND, Integer.parseInt(String.valueOf(time/10)));    //セットタイマー秒
 
-                Intent intent = new Intent(getApplicationContext(), Notifier.class);
+                Intent intent = new Intent(getApplicationContext(), TimerIntentService.class);
                 PendingIntent sender = PendingIntent.getBroadcast(MainActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                 AlarmManager manager = (AlarmManager)getSystemService(ALARM_SERVICE);
                 manager.set(AlarmManager.RTC_WAKEUP, triggerTime.getTimeInMillis(), sender);
-                startService(new Intent(self, TimerIntentService.class).putExtra("TIME",time));
+                startService(intent);
             }
         });
     }

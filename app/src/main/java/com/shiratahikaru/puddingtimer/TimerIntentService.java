@@ -6,10 +6,9 @@ import android.app.IntentService;
  * Created by ShirataHikaru on 2016/11/28.
  */
 
-import android.app.IntentService;
 import android.content.Intent;
-import android.os.Handler;
 import android.os.SystemClock;
+import android.content.SharedPreferences;
 
 public class TimerIntentService extends IntentService {
 
@@ -23,8 +22,9 @@ public class TimerIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent data) {
-
-        SystemClock.sleep(5000);
+        SharedPreferences pref = getSharedPreferences("DataSave",MODE_PRIVATE);
+        long time = pref.getLong("TIME",0 );
+        SystemClock.sleep(time);
 
         Intent intent = new Intent();
         intent.setAction("TIMER_FINISHED");

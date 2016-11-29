@@ -22,7 +22,6 @@ public class AlertDialogFragment extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent intent = new Intent(getContext(),MainActivity.class);
-                        intent.setAction("ON CLICK ALERT");
                         startActivity(intent);
                     }
                 })
